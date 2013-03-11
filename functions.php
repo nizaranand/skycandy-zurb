@@ -95,3 +95,25 @@
 			</article>
 		<?php endif;
 	}
+
+	/**
+	 * Function to remove automatically loaded jQuery.
+	 *
+	 * @return void
+	 * @author Keir Whitaker
+	 */	
+	function removejQuery() {
+		if( !is_admin()){
+			wp_deregister_script('jquery');
+		}	
+	}
+	removejQuery();
+	
+	function theH1() {
+		?>
+		<h1 class="large-3 columns"><a href="<?php echo home_url(); ?>">
+				<img src="<?php bloginfo('template_url'); ?>/images/logo-stacked.png" 
+				alt="<?php bloginfo( 'name' ); ?>" />
+			</a>
+		</h1><?php
+	}

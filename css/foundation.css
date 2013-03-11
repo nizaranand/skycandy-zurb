@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* line 4, ../scss/foundation/components/_global.scss */
 *,
 *:before,
@@ -1740,7 +1741,7 @@ blockquote p {
   /* line 372, ../scss/foundation/components/_type.scss */
   * {
     background: transparent !important;
-    color: #000 !important;
+    color: black !important;
     /* Black prints faster: h5bp.com/s */
     box-shadow: none !important;
     text-shadow: none !important;
@@ -1772,7 +1773,7 @@ blockquote p {
   /* line 391, ../scss/foundation/components/_type.scss */
   pre,
   blockquote {
-    border: 1px solid #999;
+    border: 1px solid #999999;
     page-break-inside: avoid;
   }
 
@@ -3810,7 +3811,7 @@ form.custom .custom.disabled {
   right: 0px;
   width: 11px;
   height: 14px;
-  border: solid 4px #000;
+  border: solid 4px black;
   border-top: none;
   border-bottom: none;
 }
@@ -3821,7 +3822,7 @@ form.custom .custom.disabled {
   width: 11px;
   height: 14px;
   border: solid 8px;
-  border-color: transparent transparent transparent #000;
+  border-color: transparent transparent transparent black;
 }
 /* line 111, ../scss/foundation/components/_orbit.scss */
 .orbit-container:hover .orbit-timer > span {
@@ -3858,11 +3859,11 @@ form.custom .custom.disabled {
 }
 /* line 138, ../scss/foundation/components/_orbit.scss */
 .orbit-container .orbit-prev > span {
-  border-color: transparent #fff transparent transparent;
+  border-color: transparent white transparent transparent;
 }
 /* line 139, ../scss/foundation/components/_orbit.scss */
 .orbit-container .orbit-prev:hover > span {
-  border-color: transparent #ccc transparent transparent;
+  border-color: transparent #cccccc transparent transparent;
 }
 /* line 141, ../scss/foundation/components/_orbit.scss */
 .orbit-container .orbit-next {
@@ -3870,13 +3871,13 @@ form.custom .custom.disabled {
 }
 /* line 142, ../scss/foundation/components/_orbit.scss */
 .orbit-container .orbit-next > span {
-  border-color: transparent transparent transparent #fff;
+  border-color: transparent transparent transparent white;
   left: 50%;
   margin-left: -8px;
 }
 /* line 147, ../scss/foundation/components/_orbit.scss */
 .orbit-container .orbit-next:hover > span {
-  border-color: transparent transparent transparent #ccc;
+  border-color: transparent transparent transparent #cccccc;
 }
 
 /* line 151, ../scss/foundation/components/_orbit.scss */
@@ -3894,7 +3895,7 @@ form.custom .custom.disabled {
   background: #fff;
   float: left;
   margin-right: 6px;
-  border: solid 2px #000;
+  border: solid 2px black;
   -webkit-border-radius: 1000px;
   border-radius: 1000px;
 }
@@ -4145,11 +4146,11 @@ form.custom .custom.disabled {
   text-decoration: none;
   font-size: 30px;
   font-weight: normal;
-  line-height: .5 !important;
+  line-height: 0.5 !important;
 }
 /* line 144, ../scss/foundation/components/_joyride.scss */
 .joyride-close-tip:hover, .joyride-close-tip:focus {
-  color: #eee !important;
+  color: #eeeeee !important;
 }
 
 /* line 147, ../scss/foundation/components/_joyride.scss */

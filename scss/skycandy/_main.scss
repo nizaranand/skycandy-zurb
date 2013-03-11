@@ -1,0 +1,8 @@
+$header-img: image-url('logo-stacked.png', false, false);
+$background-img: image-url('canvas-texture.jpg', false, false);
+body {
+	background: $background-img; 
+}
+
+h1 {
+}
