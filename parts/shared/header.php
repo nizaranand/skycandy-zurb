@@ -1,4 +1,4 @@
-
+<div class="header-wrap">
 <header class="row">
 	<?php theH1(); ?>
 	<div class="large-3 columns address">
@@ -9,7 +9,7 @@
 	</div>	
 	<div class="large-3 columns">
 		<p>
-			<a href="#">Register for Classes</a>
+			<a class="button" href="#">Register for Classes</a>
 		</p>
 	</div>	
 	<form class="large-3 columns" action="http://skycandyaustin.us2.list-manage.com/subscribe/post?u=20bdc94a1b8b37f1d5d29f680&amp;id=89620fda68" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
@@ -20,7 +20,7 @@
 	</form>
 	<div style="clear:both;"></div>
 </header>
-
+</div><!--header-wrap-->
 <div class="contain-to-grid sticky">
 <nav class="top-bar">
 	<ul class="title-area">

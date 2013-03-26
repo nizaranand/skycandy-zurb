@@ -2,3 +2,13 @@
 body {
   background: url('/wp-content/themes/skycandy-zurb/images/canvas-texture.jpg');
 }
+/* line 5, ../scss/skycandy/_main.scss */
+body .header-wrap {
+  background-color: #af0a00;
+}
+/* line 7, ../scss/skycandy/_main.scss */
+body .header-wrap h1 {
+  background-color: white;
+  margin: 0;
+  padding: 0.6em 0 0.4em 0;
+}

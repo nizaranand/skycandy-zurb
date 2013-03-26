@@ -2,7 +2,14 @@ $header-img: image-url('logo-stacked.png', false, false);
 $background-img: image-url('canvas-texture.jpg', false, false);
 body {
 	background: $background-img; 
+	.header-wrap {
+		background-color: #af0a00;
+		h1 {
+			background-color:white;
+			margin: 0;
+			padding: .6em 0 .4em 0;
+		}
+	}
+
 }
 
-h1 {
-}

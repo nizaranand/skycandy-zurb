@@ -39,15 +39,13 @@
 
 	add_filter( 'body_class', array( 'Starkers_Utilities', 'add_slug_to_body_class' ) );
 
-	/* ========================================================================================================================
+	/* ======================================================================================================================== 
 	
-	Custom Post Types - include custom post types and taxonimies here e.g.
-
-	e.g. require_once( 'custom-post-types/your-custom-post-type.php' );
+	Custom Post Types - include custom post types and taxonimies here
 	
 	======================================================================================================================== */
 
-
+	require_once( 'custom-post-types/promos.php' );
 
 	/* ========================================================================================================================
 	
@@ -68,7 +66,16 @@
 
 		wp_register_style( 'screen', get_stylesheet_directory_uri().'/style.css', '', '', 'screen' );
         wp_enqueue_style( 'screen' );
+
+        wp_register_script( 'slideshow', get_template_directory_uri().'/js/vendor/bjqs-1.3.min.js', array(), 1, TRUE );
 	}	
+
+	function skycandy_zurb_enqueue_script() {
+		wp_enqueue_script( 'slideshow', get_template_directory_uri().'/js/vendor/bjqs-1.3.min.js', array(), 1, TRUE );
+		wp_enqueue_script( 'skycandy', get_template_directory_uri().'/js/skycandy.js', array(), 1, TRUE );
+		wp_enqueue_style( 'bjqs', get_template_directory_uri().'/css/bjqs');
+	}
+	add_action( 'wp_enqueue_scripts', 'skycandy_zurb_enqueue_script' );
 
 	/* ========================================================================================================================
 	
@@ -111,9 +118,66 @@
 	
 	function theH1() {
 		?>
-		<h1 class="large-3 columns"><a href="<?php echo home_url(); ?>">
-				<img src="<?php bloginfo('template_url'); ?>/images/logo-stacked.png" 
-				alt="<?php bloginfo( 'name' ); ?>" />
-			</a>
-		</h1><?php
+		<div class="large-3 columns">
+			<h1><a href="<?php echo home_url(); ?>">
+					<img src="<?php bloginfo('template_url'); ?>/images/logo-stacked.png" alt="<?php bloginfo( 'name' ); ?>" />
+				</a>
+			</h1>
+		</div>
+		<?php
 	}
+
+	function get_homepage_slideshow() {
+		wp_enqueue_script( 'slideshow' );
+		add_filter( 'post_limits', 4 );
+		$slides = array();
+		$i = 0;
+		$args = array(
+			'post_type' => 'promo',
+		);
+		$promos = new WP_Query( $args );
+		if( $promos->have_posts() ) {
+			while( $promos->have_posts() ) {
+				$promos->the_post();
+				$slides[$i]['title'] = get_the_title();
+				$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($promos->post->ID), 'slide');
+				$slides[$i]['image'] = $thumbnail[0];
+				$url = get_post_meta( $promos->post->ID, 'promo_url', true );
+				if($url == '') {
+					$slides[$i]['url'] = get_permalink($promos->post->ID);
+				} else {
+					$slides[$i]['url'] = $url;
+				}
+				$i++;
+			}
+		wp_reset_postdata();
+		}
+		else {
+			echo 'Oh ohm no promos!';
+		}
+		switch($promos->post_count) {
+			case 1:
+				$rows = 12;
+				break;
+			case 2: 
+				$rows = 6;
+				break;
+			case 3:
+				$rows = 4;
+				break;
+			case 4:
+				$rows = 3;
+				break;			
+		}
+		echo '<div class="row">';
+		echo '<div class="columns large-9" id="home_page_slideshow">';
+		echo '<ul class="bjqs">';
+		foreach($slides as $slide) {
+			?>
+			<li><a href="<?php echo $slide['url']; ?>"><img src="<?php echo $slide['image']; ?>" title="<?php echo $slide['title']; ?>"></a></li>
+			<?php
+		}
+		echo '</ul>';
+		echo '</div>';
+		echo '</div><!--home_page_slideshow-->'; 
+	}	
