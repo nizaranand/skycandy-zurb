@@ -26,8 +26,10 @@
 	======================================================================================================================== */
 
 	add_theme_support('post-thumbnails');
-	
-	// register_nav_menus(array('primary' => 'Primary Navigation'));
+	if ( function_exists( 'add_image_size' ) ) { 
+		add_image_size( 'tiny', 50, 50, TRUE );
+	}	
+	register_nav_menus(array('primary' => 'Primary Navigation'));
 
 	/* ========================================================================================================================
 	
@@ -129,7 +131,6 @@
 
 	function get_homepage_slideshow() {
 		wp_enqueue_script( 'slideshow' );
-		add_filter( 'post_limits', 4 );
 		$slides = array();
 		$i = 0;
 		$args = array(
@@ -150,7 +151,7 @@
 				}
 				$i++;
 			}
-		wp_reset_postdata();
+		//wp_reset_postdata();
 		}
 		else {
 			echo 'Oh ohm no promos!';
@@ -169,15 +170,39 @@
 				$rows = 3;
 				break;			
 		}
-		echo '<div class="row">';
-		echo '<div class="columns large-9" id="home_page_slideshow">';
-		echo '<ul class="bjqs">';
+		
 		foreach($slides as $slide) {
 			?>
 			<li><a href="<?php echo $slide['url']; ?>"><img src="<?php echo $slide['image']; ?>" title="<?php echo $slide['title']; ?>"></a></li>
 			<?php
 		}
-		echo '</ul>';
-		echo '</div>';
-		echo '</div><!--home_page_slideshow-->'; 
 	}	
+	
+	function get_home_page_posts() {
+		add_filter('post_limits', 'post_query_limit_sidebar');
+		$args = array(
+			'post_type' => 'post',
+			'post_status' => 'publish'
+		);
+		$posts = new WP_Query( $args );
+		if( $posts->have_posts() ) {
+			while( $posts->have_posts() ) {
+				$posts->the_post();
+				$url = get_permalink($posts->post->ID);
+				$title = $posts->post->post_title;
+				if($thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($posts->post->ID), 'tiny')) {
+					$image = $thumbnail[0];
+				} else {
+					$image = get_bloginfo('template_url') . '/images/skycandy-default.jpg';
+				}
+				?>
+				<li><img src="<?php echo $image; ?>"/><a href="<?php echo $url; ?>"><?php echo $title; ?></a></li>
+			<?php	
+			}		
+		}
+		remove_filter('post_limits', 'post_query_limit');
+	}
+	
+	function post_query_limit_sidebar($limit) {
+		return 'LIMIT 4';
+	}

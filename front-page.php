@@ -10,6 +10,18 @@
 ?>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
 
-<?php  get_homepage_slideshow(); ?>
+<div class="row">
+	<div class="columns large-9" id="home_page_slideshow">
+		<ul class="bjqs">
+<?php get_homepage_slideshow(); ?>
+		</ul>
+	</div><!--columns-->
+	<div class="columns large-3" id="home_page_blog_posts">
+		<h3>Latest Blog Posts</h3>
+		<ul>
+			<?php get_home_page_posts(); ?>
+		</ul>	
+	</div>
+</div><!--row-->
 
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer') ); ?>
