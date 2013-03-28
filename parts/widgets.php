@@ -3,7 +3,7 @@ function skycandy_register_sidebars() {
 	$args = array(
 		'name' => 'Home Page Pods',
 		'id' => 'home_page_pods',
-		'before_widget' => '<div>',
+		'before_widget' => '<div class="columns large-6">',
 		'after_widget' => '</div>',
 		'before_title' => '<h2>',
 		'after_title' => '</h2>',
@@ -28,17 +28,33 @@ class SK_Posts_Widget extends WP_Widget {
 	
 	function widget( $args, $instance ) {
 		extract( $args );
-
 		//Our variables from the widget settings.
 		$cta = $instance['cta'];
 		$post_id = $instance['select_post'];
 		$post = get_post( $post_id, 'OBJECT' );
+		$url = get_permalink($post_id);
 
-		echo $before_widget;
-
-		var_dump($post);
-		
+		if($thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($post_id), 'pod')) {
+			$image = $thumbnail[0];
+		} else {
+			$image = get_bloginfo('template_url') . '/images/skycandy-pod.png';
+		}
+		?>
+		<div class="columns large-6">
+			<img src="<?php echo $image; ?>" alt="<?php echo $post->post_title; ?>" />
+			<h2><?php echo $post->post_title; ?></h2>
+			
+			<?php if(strlen($post->post_excerpt) > 1){
+				?>
+				<p class="excerpt"><?php echo $post->post_excerpt; ?></p>
+				<?php
+			}
+			?>
+			<p class="cta"><a href="<?php echo $url; ?>"><?php echo $cta; ?></a></p>
+		<?php
 		echo $after_widget;
+		
+		
 	}
 
 	//Update the widget 

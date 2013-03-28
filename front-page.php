@@ -25,6 +25,13 @@
 </div><!--row-->
 
 <div class="row">
-<?php dynamic_sidebar('home_page_pods'); ?> 
+	<div class="columns large-9">
+		<div class="row">
+			<?php dynamic_sidebar('home_page_pods'); ?> 
+		</div>
+	</div>
+	<div class="columns large-3">
+		<h3>Class Descriptions</h3>
+	</div>
 </div>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer') ); ?>

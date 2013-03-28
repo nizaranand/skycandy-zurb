@@ -28,6 +28,7 @@
 	add_theme_support('post-thumbnails');
 	if ( function_exists( 'add_image_size' ) ) { 
 		add_image_size( 'tiny', 50, 50, TRUE );
+		add_image_size( 'pod', 100, 120, TRUE );
 	}	
 	register_nav_menus(array('primary' => 'Primary Navigation'));
 
@@ -130,18 +131,6 @@
 	 * Register our sidebars and widgetized areas.
 	 *
 	 */
-	function skycandy_widgets_init() {
-
-		register_sidebar( array(
-			'name' => 'Home Page Pods',
-			'id' => 'home_page_pods',
-			'before_widget' => '<div>',
-			'after_widget' => '</div>',
-			'before_title' => '<h2>',
-			'after_title' => '</h2>',
-		) );
-	}
-	add_action( 'widgets_init', 'skycandy_widgets_init' );
 	
 	function theH1() {
 		?>
