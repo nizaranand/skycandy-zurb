@@ -88,7 +88,4 @@ function product_price_box_save( $post_id ) {
 	update_post_meta( $post_id, 'promo_url', $url );
 }
 
-if ( function_exists( 'add_image_size' ) ) { 
-	add_image_size( 'slide', 720, 250, TRUE );
-}
 ?>

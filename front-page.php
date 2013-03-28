@@ -17,7 +17,7 @@
 		</ul>
 	</div><!--columns-->
 	<div class="columns large-3" id="home_page_blog_posts">
-		<h3>Latest Blog Posts</h3>
+		<h2>Latest Blog Posts</h2>
 		<ul>
 			<?php get_home_page_posts(); ?>
 		</ul>	
@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<div class="columns large-3">
-		<h3>Class Descriptions</h3>
+		<h2>Class Descriptions</h2>
 	</div>
 </div>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer') ); ?>

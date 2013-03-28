@@ -29,6 +29,7 @@
 	if ( function_exists( 'add_image_size' ) ) { 
 		add_image_size( 'tiny', 50, 50, TRUE );
 		add_image_size( 'pod', 100, 120, TRUE );
+		add_image_size( 'slide', 720, 250, TRUE );
 	}	
 	register_nav_menus(array('primary' => 'Primary Navigation'));
 
@@ -49,6 +50,7 @@
 	======================================================================================================================== */
 
 	require_once( 'custom-post-types/promos.php' );
+	require_once( 'custom-post-types/classes.php' );
 
 	/* ========================================================================================================================
 	
