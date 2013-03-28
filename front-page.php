@@ -25,6 +25,6 @@
 </div><!--row-->
 
 <div class="row">
-
+<?php dynamic_sidebar('home_page_pods'); ?> 
 </div>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer') ); ?>

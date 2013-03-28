@@ -19,9 +19,9 @@ function register_post_widget() {
 class SK_Posts_Widget extends WP_Widget {
 
 	function SK_Posts_Widget() {
-		$widget_ops = array( 'classname' => 'example', 'description' => __('Home Page Posts', 'sk-posts') );
+		$widget_ops = array( 'classname' => 'home_page_pod', 'description' => __('Home Page Posts', 'sk-posts') );
 		
-		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'sk-posts' );
+		$control_ops = array( 'width' => 350, 'height' => 350, 'id_base' => 'sk-posts' );
 		
 		$this->WP_Widget( 'sk-posts', __('Home Page Posts', 'sk-posts'), $widget_ops, $control_ops );
 	}
@@ -30,24 +30,13 @@ class SK_Posts_Widget extends WP_Widget {
 		extract( $args );
 
 		//Our variables from the widget settings.
-		$title = apply_filters('widget_title', $instance['title'] );
-		$name = $instance['name'];
-		$show_info = isset( $instance['show_info'] ) ? $instance['show_info'] : false;
+		$cta = $instance['cta'];
+		$post_id = $instance['select_post'];
+		$post = get_post( $post_id, 'OBJECT' );
 
 		echo $before_widget;
 
-		// Display the widget title 
-		if ( $title )
-			echo $before_title . $title . $after_title;
-
-		//Display the name 
-		if ( $name )
-			printf( '<p>' . __('Hey their Sailor! My name is %1$s.', 'example') . '</p>', $name );
-
-		
-		if ( $show_info )
-			printf( $name );
-
+		var_dump($post);
 		
 		echo $after_widget;
 	}
@@ -57,10 +46,8 @@ class SK_Posts_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
-		//Strip tags from title and name to remove HTML 
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['name'] = strip_tags( $new_instance['name'] );
-		$instance['show_info'] = $new_instance['show_info'];
+		$instance['select_post'] = $new_instance['select_post'];
+		$instance['cta'] = strip_tags( $new_instance['cta'] );
 
 		return $instance;
 	}
@@ -69,31 +56,47 @@ class SK_Posts_Widget extends WP_Widget {
 	function form( $instance ) {
 
 		//Set up some default widget settings.
-		$defaults = array( 'title' => __('Example', 'example'), 'name' => __('Bilal Shaheen', 'example'), 'show_info' => true );
+		$defaults = array( 'show_info' => true, 'post_id' => 0 );
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
-
-		//Widget Title: Text Input.
+		<p>Choose the blog post to appear in this home page pod.</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'example'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
-		</p>
-
-		//Text Input.
+			<label for="<?php echo $this->get_field_id( 'select_post' ); ?>"><?php _e('Select post to display:', 'sk-posts'); ?></label><br />
+			<select id="<?php echo $this->get_field_id( 'select_post' ); ?>" name="<?php echo $this->get_field_name( 'select_post' ); ?>">
+				<?php $this->get_posts_options($instance['select_post']); ?>
+			</select>
+			
 		<p>
-			<label for="<?php echo $this->get_field_id( 'name' ); ?>"><?php _e('Your Name:', 'example'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'name' ); ?>" name="<?php echo $this->get_field_name( 'name' ); ?>" value="<?php echo $instance['name']; ?>" style="width:100%;" />
+			<label for="<?php echo $this->get_field_id( 'cta' ); ?>"><?php _e('Call To Action:', 'sk-posts'); ?></label>
+			<input id="<?php echo $this->get_field_id( 'cta' ); ?>" name="<?php echo $this->get_field_name( 'cta' ); ?>" value="<?php echo $instance['cta']; ?>" style="width:94%;" />
 		</p>
-
 		
-		//Checkbox.
-		<p>
-			<input class="checkbox" type="checkbox" <?php checked( $instance['show_info'], true ); ?> id="<?php echo $this->get_field_id( 'show_info' ); ?>" name="<?php echo $this->get_field_name( 'show_info' ); ?>" /> 
-			<label for="<?php echo $this->get_field_id( 'show_info' ); ?>"><?php _e('Display info publicly?', 'example'); ?></label>
-		</p>
-
 	<?php
 	}
+	
+	function get_posts_options($selected) {
+		// The Query
+		echo '<option value="0">Please Select a Post</option>';
+		$args = array(
+			'orderby' => 'title',
+			'order' => 'ASC',
+			'post_type' => 'post',
+			'posts_per_page' => -1,
+		);
+		$query = new WP_Query( $args );
+
+		// The Loop
+		while ( $query->have_posts() ) :
+			$query->the_post();
+			//var_dump($query->post);
+			echo '<option value="'. $query->post->ID .'"';
+			if($query->post->ID == $selected) {
+				echo ' selected="selected" ';
+			}
+			echo '>' . get_the_title() . '</option>';
+		endwhile;
+	}
 }
+
 add_action( 'widgets_init', 'skycandy_register_sidebars' );
 add_action( 'widgets_init', 'register_post_widget' );	
 ?>
