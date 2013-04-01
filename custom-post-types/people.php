@@ -120,4 +120,73 @@ function sky_candy_classes_taught_save( $post_id ) {
 	}
 }
 
+/**
+ * Add custom taxonomy for the person's role at Sky Candy 
+ *
+ * Additional custom taxonomies can be defined here
+ * http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+function add_taxonomy_role() {
+	// Add new "Locations" taxonomy to Posts
+	register_taxonomy('role', 'people', array(
+		// Hierarchical taxonomy (like categories)
+		'hierarchical' => false,
+		// This array of options controls the labels displayed in the WordPress Admin UI
+		'labels' => array(
+			'name' => _x( 'Role', 'taxonomy general name' ),
+			'singular_name' => _x( 'Role', 'taxonomy singular name' ),
+			'search_items' =>  __( 'Search Roles' ),
+			'all_items' => __( 'All Roles' ),
+			'parent_item' => __( 'Parent Role' ),
+			'parent_item_colon' => __( 'Parent Role:' ),
+			'edit_item' => __( 'Edit Role' ),
+			'update_item' => __( 'Update Role' ),
+			'add_new_item' => __( 'Add Role' ),
+			'new_item_name' => __( 'New Role Name' ),
+			'menu_name' => __( 'Roles' ),
+		),
+		// Control the slugs used for this taxonomy
+		'rewrite' => array(
+			'slug' => 'role', // This controls the base slug that will display before each term
+			'with_front' => false, // Don't display the category base before "/locations/"
+			'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+		),
+	));
+}
+add_action( 'init', 'add_taxonomy_role', 0 );
+
+/**
+ * Add custom taxonomy for the person's role at Sky Candy 
+ *
+ * Additional custom taxonomies can be defined here
+ * http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+function add_taxonomy_apparati() {
+  // Add new "Locations" taxonomy to Posts
+  register_taxonomy('apparati', 'people', array(
+    // Hierarchical taxonomy (like categories)
+    'hierarchical' => false,
+    // This array of options controls the labels displayed in the WordPress Admin UI
+    'labels' => array(
+      'name' => _x( 'Performance Apparati', 'taxonomy general name' ),
+      'singular_name' => _x( 'Apparatus', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Apparati' ),
+      'all_items' => __( 'All Apparati' ),
+      'parent_item' => __( 'Parent Apparatus' ),
+      'parent_item_colon' => __( 'Parent Apparatus:' ),
+      'edit_item' => __( 'Edit Apparatus' ),
+      'update_item' => __( 'Update Apparatus' ),
+      'add_new_item' => __( 'Add Apparatus' ),
+      'new_item_name' => __( 'New Apparatus Name' ),
+      'menu_name' => __( 'Apparati' ),
+    ),  
+    // Control the slugs used for this taxonomy
+    'rewrite' => array(
+      'slug' => 'apparati', // This controls the base slug that will display before each term
+      'with_front' => false, // Don't display the category base before "/locations/"
+      'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+    ),  
+  )); 
+}
+add_action( 'init', 'add_taxonomy_apparati', 0 );
 ?>
