@@ -51,7 +51,7 @@
 
 	require_once( 'custom-post-types/promos.php' );
 	require_once( 'custom-post-types/classes.php' );
-
+	require_once( 'custom-post-types/people.php' );
 	/* ========================================================================================================================
 	
 	Scripts
