@@ -30,6 +30,7 @@
 		add_image_size( 'tiny', 50, 50, TRUE );
 		add_image_size( 'pod', 100, 120, TRUE );
 		add_image_size( 'slide', 720, 250, TRUE );
+		add_image_size( 'masonry', 150, 150, FALSE );
 	}	
 	register_nav_menus(array('primary' => 'Primary Navigation'));
 
@@ -79,6 +80,7 @@
 		wp_enqueue_script( 'slideshow', get_template_directory_uri().'/js/vendor/bjqs-1.3.min.js', array(), 1, TRUE );
 		wp_enqueue_script( 'skycandy', get_template_directory_uri().'/js/skycandy.js', array(), 1, TRUE );
 		wp_enqueue_style( 'bjqs', get_template_directory_uri().'/css/bjqs');
+		wp_enqueue_script( 'masonry', get_template_directory_uri().'/js/vendor/jquery.masonry.js', array(), 1, TRUE );
 	}
 	add_action( 'wp_enqueue_scripts', 'skycandy_zurb_enqueue_script' );
 
@@ -127,8 +129,7 @@
 			wp_deregister_script('jquery');
 		}	
 	}
-	removejQuery();
-	
+	add_action( 'wp_enqueue_scripts', 'removejQuery' );	
 	/**
 	 * Register our sidebars and widgetized areas.
 	 *
@@ -167,7 +168,6 @@
 				}
 				$i++;
 			}
-		//wp_reset_postdata();
 		}
 		else {
 			echo 'Oh ohm no promos!';
@@ -192,6 +192,8 @@
 			<li><a href="<?php echo $slide['url']; ?>"><img src="<?php echo $slide['image']; ?>" title="<?php echo $slide['title']; ?>"></a></li>
 			<?php
 		}
+	 	wp_reset_query();
+    wp_reset_postdata();
 	}	
 	
 	function get_home_page_posts() {
@@ -216,9 +218,42 @@
 			<?php	
 			}		
 		}
-		remove_filter('post_limits', 'post_query_limit');
+		remove_filter('post_limits', 'post_query_limit_sidebar');
+		wp_reset_query();
+		wp_reset_postdata();
 	}
 	
 	function post_query_limit_sidebar($limit) {
 		return 'LIMIT 4';
+	}
+
+  function post_query_limit_images($limit) {
+    return 'LIMIT 20';
+  }
+	
+	function get_classes() {
+		$args = array(
+      'post_type' => 'class',
+      'post_status' => 'publish',
+			'orderby' => 'title',
+			'order' => 'ASC' 
+   );
+		$classes = new WP_Query( $args );
+		?>
+		<ul>
+		<?php
+		if ( $classes->have_posts() ) :
+			while ( $classes->have_posts() ) :
+				$classes->the_post();
+				//var_dump($classes->post);
+				?>
+				<li><a href="<?php echo get_permalink( $classes->post->ID ) ?>"><?php echo $classes->post->post_title; ?></a></li>
+				<?php
+			endwhile;
+		endif;
+		?>
+		</ul>
+		<?php
+		wp_reset_query();
+    wp_reset_postdata();
 	}

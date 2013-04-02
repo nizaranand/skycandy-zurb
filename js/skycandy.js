@@ -6,3 +6,12 @@ $(document).ready(function(){
         responsive : true,
 	});
 });
+
+$(function(){
+  $('#masonry-container').masonry({
+    // options
+    itemSelector : '.attachment-masonry',
+    columnWidth : 150,
+    isAnimated: true
+  });
+});
