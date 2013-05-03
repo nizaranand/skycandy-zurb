@@ -16,7 +16,7 @@
 <?php get_homepage_slideshow(); ?>
 		</ul>
 	</div><!--columns-->
-	<div class="columns large-3" id="home_page_blog_posts">
+	<div class="columns large-3 sidebar" id="home_page_blog_posts">
 		<h2>Latest Blog Posts</h2>
 		<ul>
 			<?php get_home_page_posts(); ?>
@@ -26,11 +26,11 @@
 
 <div class="row">
 	<div class="columns large-9">
-		<div class="row">
+		<div class="row pods">
 			<?php dynamic_sidebar('home_page_pods'); ?> 
 		</div>
 	</div>
-	<div class="columns large-3">
+	<div class="columns large-3 sidebar">
 		<h2>Class Descriptions</h2>
 		<?php get_classes(); ?> 
 	</div>

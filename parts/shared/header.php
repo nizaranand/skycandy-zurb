@@ -3,17 +3,17 @@
 	<?php theH1(); ?>
 	<div class="large-3 columns address">
 		<p>
-			507 Calles St #117 Austin, TX 78702 (<a href="http://g.co/maps/wjybw">map</a>)<br />
-			(512) 800-4998 | <a href="mailto:info@skycandyaustin.com">info@skycandyaustin.com</a>
+			507 Calles St #117<br />Austin, TX 78702 (<a href="http://g.co/maps/wjybw">map</a>)<br />
+			(512) 800-4998<br /><a href="mailto:info@skycandyaustin.com">info@skycandyaustin.com</a>
 		</p>
 	</div>	
 	<div class="large-3 columns">
-		<p>
+		<p id="register">
 			<a class="button" href="#">Register for Classes</a>
 		</p>
 	</div>	
 	<form class="large-3 columns" action="http://skycandyaustin.us2.list-manage.com/subscribe/post?u=20bdc94a1b8b37f1d5d29f680&amp;id=89620fda68" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-		<label for="mce-EMAIL">Subscribe to our mailing list</label><p></p>
+		<label for="mce-EMAIL">Subscribe to our mailing list</label>
 		<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required="">
 		<div class="clear">
 		<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>

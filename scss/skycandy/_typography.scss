@@ -1,0 +1,23 @@
+body {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	p {
+	}
+	a {
+		color: $darkred;
+		border-bottom: 1px dotted $darkred;
+	}
+	a:hover {
+		color: $darkred;
+		border-bottom: 1px solid $darkred;
+	}
+	a.imglink {
+		border-bottom: 0 none;
+	}
+	h2, h3, h4, h5, h6 {
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	}
+	h2 {
+		font-size:1.6em;
+	}
+
+}

@@ -1,0 +1,33 @@
+body.home {
+	h2 {
+		font-size:1em;
+	}
+	p, li {
+		font-size: .8em;
+	}
+	.pods {
+		.columns {
+			margin-bottom: 1em;
+			img {
+				float:left;
+				margin-right: 10px;
+			}
+			h2, p {
+				margin-left: 110px;
+			}
+			p {
+				margin-bottom: 0;
+			}
+		}
+	}
+	#home_page_blog_posts {
+		li {
+			list-style-type:none;
+			margin: 0 0 1em 0;
+			img {
+				float:left;
+				margin-right: 10px;
+			}
+		}
+	}
+}

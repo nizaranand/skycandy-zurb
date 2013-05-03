@@ -1,14 +1,127 @@
 /* line 3, ../scss/skycandy/_main.scss */
 body {
   background: url('/wp-content/themes/skycandy-zurb/images/canvas-texture.jpg');
+  font-family: "Helvetica-Nueue", Helvetica, Arial, sans-serif;
 }
-/* line 5, ../scss/skycandy/_main.scss */
+/* line 6, ../scss/skycandy/_main.scss */
 body .header-wrap {
   background-color: #af0a00;
+  color: #fff;
 }
-/* line 7, ../scss/skycandy/_main.scss */
+/* line 9, ../scss/skycandy/_main.scss */
 body .header-wrap h1 {
   background-color: white;
   margin: 0;
   padding: 0.6em 0 0.4em 0;
+}
+/* line 13, ../scss/skycandy/_main.scss */
+body .header-wrap h1 img {
+  max-height: 75px;
+  margin: 0 auto;
+  display: block;
+}
+/* line 19, ../scss/skycandy/_main.scss */
+body .header-wrap .address {
+  margin-top: 1em;
+}
+/* line 22, ../scss/skycandy/_main.scss */
+body .header-wrap #register {
+  margin: 0;
+  padding: 0;
+}
+/* line 25, ../scss/skycandy/_main.scss */
+body .header-wrap #register .button {
+  font-size: 1.4em;
+  margin: 1.5em 0 0 0;
+}
+/* line 30, ../scss/skycandy/_main.scss */
+body .header-wrap form {
+  margin: 0.5em 0 0 0;
+  padding: 0;
+}
+/* line 33, ../scss/skycandy/_main.scss */
+body .header-wrap form input.email {
+  margin: 0;
+}
+/* line 36, ../scss/skycandy/_main.scss */
+body .header-wrap form input.button {
+  margin: 10px 0 0 0;
+  font-size: .8em;
+}
+
+/* line 9, ../scss/skycandy/_variables.scss */
+.clearfix {
+  *zoom: 1;
+}
+/* line 11, ../scss/skycandy/_variables.scss */
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+/* line 12, ../scss/skycandy/_variables.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/* line 2, ../scss/skycandy/_front.scss */
+body.home h2 {
+  font-size: 1em;
+}
+/* line 5, ../scss/skycandy/_front.scss */
+body.home p, body.home li {
+  font-size: .8em;
+}
+/* line 9, ../scss/skycandy/_front.scss */
+body.home .pods .columns {
+  margin-bottom: 1em;
+}
+/* line 11, ../scss/skycandy/_front.scss */
+body.home .pods .columns img {
+  float: left;
+  margin-right: 10px;
+}
+/* line 15, ../scss/skycandy/_front.scss */
+body.home .pods .columns h2, body.home .pods .columns p {
+  margin-left: 110px;
+}
+/* line 18, ../scss/skycandy/_front.scss */
+body.home .pods .columns p {
+  margin-bottom: 0;
+}
+/* line 24, ../scss/skycandy/_front.scss */
+body.home #home_page_blog_posts li {
+  list-style-type: none;
+  margin: 0 0 1em 0;
+}
+/* line 27, ../scss/skycandy/_front.scss */
+body.home #home_page_blog_posts li img {
+  float: left;
+  margin-right: 10px;
+}
+
+/* line 1, ../scss/skycandy/_typography.scss */
+body {
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+/* line 5, ../scss/skycandy/_typography.scss */
+body a {
+  color: #620600;
+  border-bottom: 1px dotted #620600;
+}
+/* line 9, ../scss/skycandy/_typography.scss */
+body a:hover {
+  color: #620600;
+  border-bottom: 1px solid #620600;
+}
+/* line 13, ../scss/skycandy/_typography.scss */
+body a.imglink {
+  border-bottom: 0 none;
+}
+/* line 16, ../scss/skycandy/_typography.scss */
+body h2, body h3, body h4, body h5, body h6 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/* line 19, ../scss/skycandy/_typography.scss */
+body h2 {
+  font-size: 1.6em;
 }

@@ -214,7 +214,7 @@
 					$image = get_bloginfo('template_url') . '/images/skycandy-default.jpg';
 				}
 				?>
-				<li><img src="<?php echo $image; ?>"/><a href="<?php echo $url; ?>"><?php echo $title; ?></a></li>
+				<li class="clearfix"><img src="<?php echo $image; ?>"/><a href="<?php echo $url; ?>"><?php echo $title; ?></a></li>
 			<?php	
 			}		
 		}

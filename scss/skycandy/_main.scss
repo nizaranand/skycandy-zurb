@@ -1,13 +1,42 @@
 $header-img: image-url('logo-stacked.png', false, false);
 $background-img: image-url('canvas-texture.jpg', false, false);
 body {
-	background: $background-img; 
+	background: $background-img;
+	font-family: 'Helvetica-Nueue', Helvetica, Arial, sans-serif;
 	.header-wrap {
 		background-color: #af0a00;
+		color: #fff;
 		h1 {
 			background-color:white;
 			margin: 0;
 			padding: .6em 0 .4em 0;
+			img {
+				max-height: 75px;
+				margin: 0 auto;
+				display: block;
+			}
+		}
+		.address {
+			margin-top: 1em;
+		}
+		#register {
+			margin: 0;
+			padding: 0;
+			.button {
+				font-size: 1.4em;
+				margin: 1.5em 0 0 0;
+			}
+		}
+		form {
+			margin: .5em 0 0 0;
+			padding: 0;
+			input.email {
+				margin: 0;
+			}
+			input.button {
+				margin: 10px 0 0 0;
+				font-size: .8em;
+			}
 		}
 	}
 

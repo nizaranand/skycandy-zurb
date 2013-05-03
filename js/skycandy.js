@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $('img').parent('a').addClass('imglink');
 	$('#home_page_slideshow').bjqs({
 		animtype : 'slide',
 		height : 250,
